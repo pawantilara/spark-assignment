@@ -7,7 +7,7 @@ if __name__ =="__main__":
     conf = SparkConf().setAppName("Stock").setMaster("local[*]")
     sc = SparkContext(conf=conf)
     sqlContext = SQLContext(sc)
-    '''sc.textFile("/home/pawan_tilara/Documents/spark-assignment/stock_prices.csv").map(lambda line: line.split(",")) .filter(lambda line: len(line)>1) .map(lambda line: (line[0],line[1])).collect()
+    """sc.textFile("/home/pawan_tilara/Documents/spark-assignment/stock_prices.csv").map(lambda line: line.split(",")) .filter(lambda line: len(line)>1) .map(lambda line: (line[0],line[1])).collect()
     stock = sc.textFile("/home/pawan_tilara/Documents/spark-assignment/stock_prices.csv")
     temp_value = stock.filter(lambda x:x.split(","))
     store_unique_date = {}
@@ -16,7 +16,9 @@ if __name__ =="__main__":
     unique_date = temp_value.map(lambda x: (x[0], 1)).reduceByKey(lambda a,b: a+b)
     unique_date.take(5)
     for i in range(len(temp_value)):
-        store_unique_date[temp_value[i][0]]+=1'''
+        store_unique_date[temp_value[i][0]]+=1"""
+    
+    
     spark = SparkSession.builder.master("local[*]").appName("stock ").getOrCreate()
     df = spark.read.format("csv").option("header", "true").load("/home/pawan_tilara/Documents/spark-assignment/stock_prices.csv")
     df.createOrReplaceTempView("df")
